@@ -1,0 +1,15 @@
+{
+  "name": "favmel81/yii2utils",
+  "description": "Different yii2 classes",
+  "authors": [
+    {
+      "name": "Alexey Fomenko",
+      "email": "favmel81@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4" : {
+      "favmel81\\yii2utils\\" : "."
+    }
+  }
+}
