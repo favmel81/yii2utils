@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4" : {
-      "favmel81\\yii2utils\\" : "."
+      "favmel81\\yii2utils\\" : "favmel81/yii2utils"
     }
   }
 }
