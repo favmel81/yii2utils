@@ -1,7 +1,7 @@
 <?php
 
 
-namespace favmel81\yii2utils\core\helpers;
+namespace yii2utils\core\helpers;
 
 
 class FilterData {

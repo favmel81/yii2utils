@@ -1,9 +1,9 @@
 <?php
 
-namespace favmel81\yii2utils\core\widgets;
+namespace yii2utils\core\widgets;
 
 use yii\base\Widget;
-use favmel81\yii2utils\core\data\Pagination as Datasource;
+use yii2utils\core\data\Pagination as Datasource;
 
 class Pagination extends Widget {
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace favmel81\yii2utils\core\web;
+namespace yii2utils\core\web;
 
 use Yii;
 use yii\base\Object;

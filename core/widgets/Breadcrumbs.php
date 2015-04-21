@@ -1,10 +1,10 @@
 <?php
 
-namespace favmel81\yii2utils\core\widgets;
+namespace yii2utils\core\widgets;
 
 use Yii;
 use yii\base\Widget;
-use favmel81\yii2utils\core\web\BreadCrumbsStack;
+use yii2utils\core\web\BreadCrumbsStack;
 
 class Breadcrumbs extends Widget {
 

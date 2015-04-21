@@ -1,6 +1,6 @@
 <?php
 
-namespace favmel81\yii2utils\core\rest;
+namespace yii2utils\core\rest;
 
 
 use Yii;
@@ -9,7 +9,7 @@ use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
-use favmel81\yii2utils\core\web\JsonResponseTrait as WebJsonResponse;
+use yii2utils\core\web\JsonResponseTrait as WebJsonResponse;
 
 
 trait JsonResponseTrait

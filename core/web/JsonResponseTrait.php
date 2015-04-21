@@ -1,10 +1,10 @@
 <?php
 
-namespace favmel81\yii2utils\core\web;
+namespace yii2utils\core\web;
 
 use Yii;
 use yii\web\Response;
-use favmel81\yii2utils\core\helpers\JsonResultCollector;
+use yii2utils\core\helpers\JsonResultCollector;
 
 
 trait JsonResponseTrait

@@ -1,6 +1,6 @@
 <?php
 
-namespace favmel81\yii2utils\core\helpers\form;
+namespace yii2utils\core\helpers\form;
 
 use yii\base\Object;
 
