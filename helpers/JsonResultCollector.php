@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2utils\core\helpers;
+namespace yii2utils\helpers;
 
 class JsonResultCollector
 {

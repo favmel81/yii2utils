@@ -1,7 +1,7 @@
 <?php
 
 
-namespace yii2utils\core\web;
+namespace yii2utils\web;
 
 use Yii;
 use yii\base\Object;
@@ -14,7 +14,7 @@ use yii\base\Object;
  *
  * Class BreadCrumbsStack
  *
- * @package core\web
+ * @package web
  */
 class BreadCrumbsStack extends Object
 {

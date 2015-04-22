@@ -1,7 +1,7 @@
 <?php
 
 
-namespace yii2utils\core\helpers\form;
+namespace yii2utils\helpers\form;
 
 
 class Password extends TextField {

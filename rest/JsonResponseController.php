@@ -1,22 +1,32 @@
 <?php
 
-namespace yii2utils\core\rest;
 
+namespace yii2utils\rest;
 
 use Yii;
-use yii\web\Response;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
-use yii2utils\core\web\JsonResponseTrait as WebJsonResponse;
+use yii\web\Response;
+use yii2utils\helpers\JsonResultCollector;
 
 
-trait JsonResponseTrait
+class JsonResponseController extends \yii\web\Controller
 {
- use WebJsonResponse;
+
+    public $enableCsrfValidation = false;
 
 
+    /**
+     * @var JsonResultCollector
+     */
+    protected $json;
+
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -40,8 +50,30 @@ trait JsonResponseTrait
         ];
     }
 
+    public function init()
+    {
+        parent::init();
+        $this->json = new JsonResultCollector;
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function afterAction($action, $result)
+    {
+        $result = parent::afterAction($action, $this->json);
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->statusCode = $result->getStatusCode();
+        return $result->getResult();
 
+    }
+
+    /**
+     * Declares the allowed HTTP verbs.
+     * Please refer to [[VerbFilter::actions]] on how to declare the allowed verbs.
+     *
+     * @return array the allowed HTTP verbs.
+     */
     protected function verbs()
     {
         return [
@@ -52,6 +84,7 @@ trait JsonResponseTrait
             'delete' => ['DELETE'],
         ];
     }
+
 
     public function actionIndex()
     {
@@ -79,5 +112,6 @@ trait JsonResponseTrait
     {
         $this->json->message('Delete Action');
     }
+
 
 }

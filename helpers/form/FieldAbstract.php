@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2utils\core\helpers\form;
+namespace yii2utils\helpers\form;
 
 use yii\base\Object;
 

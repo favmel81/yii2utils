@@ -1,7 +1,7 @@
 <?php
 
 
-namespace yii2utils\core\web;
+namespace yii2utils\web;
 
 use Yii;
 use yii\web\UrlRule as BaseUrlRule;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace yii2utils\core\data;
+namespace yii2utils\data;
 
 use Yii;
 use yii\base\Object;

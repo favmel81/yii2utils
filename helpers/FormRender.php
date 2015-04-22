@@ -1,13 +1,13 @@
 <?php
 
 
-namespace yii2utils\core\helpers;
+namespace yii2utils\helpers;
 
 use Yii;
 use yii\web\Request;
 use yii\base\Model;
 use yii\helpers\BaseHtml;
-use yii2utils\core\helpers\form\FieldAbstract;
+use yii2utils\helpers\form\FieldAbstract;
 
 
 
@@ -15,12 +15,12 @@ class FormRender
 {
 
     static $fieldTypes = [
-        'textfield' => 'yii2utils\core\helpers\form\TextField',
-        'hidden' => 'yii2utils\core\helpers\form\Hidden',
-        'textarea' => 'yii2utils\core\helpers\form\TextArea',
-        'password' => 'yii2utils\core\helpers\form\Password',
-        'captcha' => 'yii2utils\core\helpers\form\Captcha',
-        'radio' => 'yii2utils\core\helpers\form\Radio'
+        'textfield' => 'yii2utils\helpers\form\TextField',
+        'hidden' => 'yii2utils\helpers\form\Hidden',
+        'textarea' => 'yii2utils\helpers\form\TextArea',
+        'password' => 'yii2utils\helpers\form\Password',
+        'captcha' => 'yii2utils\helpers\form\Captcha',
+        'radio' => 'yii2utils\helpers\form\Radio'
     ];
 
 

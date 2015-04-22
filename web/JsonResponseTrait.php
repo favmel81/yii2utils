@@ -1,10 +1,10 @@
 <?php
 
-namespace yii2utils\core\web;
+namespace yii2utils\web;
 
 use Yii;
 use yii\web\Response;
-use yii2utils\core\helpers\JsonResultCollector;
+use yii2utils\helpers\JsonResultCollector;
 
 
 trait JsonResponseTrait

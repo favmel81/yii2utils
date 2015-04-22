@@ -1,9 +1,9 @@
 <?php
 
-namespace yii2utils\core\widgets;
+namespace yii2utils\widgets;
 
 use yii\base\Widget;
-use yii2utils\core\data\Pagination as Datasource;
+use yii2utils\data\Pagination as Datasource;
 
 class Pagination extends Widget {
 
