@@ -25,8 +25,8 @@ class UserManager extends Object
         $identityClass = $this->getIdentityClass();
         $user = $identityClass::findByLogin($login);
         if ($user) {
-            if ($user->password === md5($password . $user->password_salt)) {
-                if ($user->ban == 0) {
+            if (Yii::$app->security->validatePassword($password, $user->password)) {
+                if ($user->blocked == 0) {
                     return self::auth($user, $remember);
                 }
                 $errors['login'] = self::MESSAGE_USER_BLOCKED;
