@@ -59,8 +59,8 @@ trait JsonResponseTrait
         $this->cancelJsonResponse = (boolean)$cancel;
     }
 
-    public function sendStatus403($send = true) {
-        $this->send403 = (boolean)$send;
+    public function sendStatus500($send = true) {
+        $this->send500 = (boolean)$send;
     }
 
 
@@ -72,7 +72,7 @@ trait JsonResponseTrait
                     'success' => false,
                     'message'     => $e->getMessage()
                 )
-            )->setStatusCode(400);
+            );//->setStatusCode(400);
         }
 
         if(!$this->json->isSuccess() && $this->send500) {
@@ -83,6 +83,6 @@ trait JsonResponseTrait
         Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->response->statusCode = $statusCode;
         Yii::$app->response->charset = 'UTF-8';
-        return $result = $this->json->getResult();
+        return $this->json->getResult();
     }
 }

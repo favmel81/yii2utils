@@ -24,8 +24,9 @@ class UserManager extends Object
     {
         $identityClass = $this->getIdentityClass();
         $user = $identityClass::findByLogin($login);
+
         if ($user) {
-            if (Yii::$app->security->validatePassword($password, $user->password)) {
+            if ($user->password !== null && Yii::$app->security->validatePassword($password, $user->password)) {
                 if ($user->blocked == 0) {
                     return self::auth($user, $remember);
                 }
