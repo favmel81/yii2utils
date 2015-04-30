@@ -26,14 +26,25 @@ class UserManager extends Object
         $user = $identityClass::findByLogin($login);
 
         if ($user) {
-            if ($user->password !== null && Yii::$app->security->validatePassword($password, $user->password)) {
-                if ($user->blocked == 0) {
-                    return self::auth($user, $remember);
+            $passwordError = false;
+            try {
+                if(Yii::$app->security->validatePassword($password, $user->password)) {
+                    if ($user->blocked == 0) {
+                        return self::auth($user, $remember);
+                    }
+                    $errors['login'] = self::MESSAGE_USER_BLOCKED;
+                } else {
+                    $passwordError = true;
                 }
-                $errors['login'] = self::MESSAGE_USER_BLOCKED;
-            } else {
+
+            } catch (\Exception $e) {
+                $passwordError = true;
+            }
+
+            if($passwordError) {
                 $errors['password'] = self::MESSAGE_INVALID_PASSWORD;
             }
+
         } else {
             $errors['login'] = self::MESSAGE_USER_IS_NOT_FOUND;
         }
