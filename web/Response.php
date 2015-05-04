@@ -5,6 +5,8 @@ namespace yii2utils\web;
 
 use Yii;
 use yii\web\Response as WebBaseResponse;
+use yii\base\InvalidConfigException;
+
 
 class Response extends  WebBaseResponse {
 
