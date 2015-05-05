@@ -16,7 +16,9 @@ trait JsonResponseTrait
      *
      * @var bool send 500 status code if success == false
      */
-    protected $send500 = true;
+    protected $sendErrorStatus = false;
+
+    protected $errorStatusCode = 500;
 
     /**
      * @var JsonResultCollector
@@ -59,8 +61,8 @@ trait JsonResponseTrait
         $this->cancelJsonResponse = (boolean)$cancel;
     }
 
-    public function sendStatus500($send = true) {
-        $this->send500 = (boolean)$send;
+    public function sendErrorStatusCode($send = true) {
+        $this->sendErrorStatus = (boolean)$send;
     }
 
 
@@ -72,11 +74,11 @@ trait JsonResponseTrait
                     'success' => false,
                     'message'     => $e->getMessage()
                 )
-            );//->setStatusCode(400);
+            )->setStatusCode($this->errorStatusCode);
         }
 
-        if(!$this->json->isSuccess() && $this->send500) {
-            $statusCode = 500;
+        if(!$this->json->isSuccess() && $this->sendErrorStatus) {
+            $statusCode = $this->errorStatusCode;
         } else {
             $statusCode = $this->json->getStatusCode();
         }
