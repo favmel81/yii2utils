@@ -38,6 +38,36 @@ class RequestParams extends Object
         return $this->getParam($name, $default);
     }
 
+    public function sortExt() {
+        $sort = json_decode($this->getParam('sort'), true);
+        if(is_array($sort) && isset($sort[0])) {
+            $sort = $sort[0];
+            $property = isset($sort['property'])?$sort['property']:null;
+            $direction = isset($sort['direction'])?$sort['direction']:null;
+
+            if($direction == 'ASC') {
+                $direction = SORT_ASC;
+            } elseif($direction == 'DESC') {
+                $direction = SORT_DESC;
+            } else {
+                $direction = null;
+            }
+
+            if($direction && $property) {
+               $sort = [
+                    'property' => $property,
+                    'direction' => $direction
+                ];
+            } else {
+                $sort = null;
+            }
+
+        } else {
+            $sort = null;
+        }
+        return $sort?(object)$sort:null;
+    }
+
 
     protected function getParam($name, $default = null)
     {
