@@ -165,7 +165,7 @@ class JsonResultCollector
         } elseif ($value !== null) {
             $this->result['errors'][$key] = $value;
         }
-        return $this;
+        return $this->success(false);
     }
 
 
