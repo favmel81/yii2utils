@@ -6,6 +6,9 @@ namespace yii2utils\helpers;
 
 class FilterData {
 
+    const SPLIT_PATTERN = '|\s+|';
+    const DEFAULT_TRIM_CHARS = " \t\n\r\0\x0B";
+
     static public function baseClean($data) {
         if(!is_scalar($data)) {
             return $data;
@@ -27,6 +30,19 @@ class FilterData {
             $text = trim($text). ' '.$suffix;
         }
         return $text;
+    }
+
+    public static function pregSplit($str, $pattern = self::SPLIT_PATTERN, $trimChars = null) {
+        $res = [];
+        $trimChars = self::DEFAULT_TRIM_CHARS . ($trimChars?$trimChars:'');
+        $str = preg_split($pattern, $str);
+            foreach($str as $chunk) {
+                $chunk = trim($chunk, $trimChars);
+                if(!empty($chunk)) {
+                    $res[] = $chunk;
+                }
+            }
+        return array_unique($res);
     }
 
 
