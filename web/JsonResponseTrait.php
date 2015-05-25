@@ -46,6 +46,9 @@ trait JsonResponseTrait
 
     public function afterAction($action, $result)
     {
+        if(method_exists($this, 'preAfterAction')) {
+            $this->preAfterAction();
+        }
         if (!$this->cancelJsonResponse) {
             $result = $this->json;
         }
