@@ -34,6 +34,13 @@ trait JsonResponseTrait
 
     public function runAction($id, $params = [])
     {
+        if(method_exists($this, 'preBeforeAction')) {
+            $result = $this->preBeforeAction($id);
+            if($result !== null && $result !== true) {
+                return $result;
+            }
+        }
+
         try {
             return parent::runAction($id, $params);
         } catch (\Exception $e) {
