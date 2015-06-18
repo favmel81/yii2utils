@@ -1,12 +1,36 @@
 <?php
 
+/**
+ * Usage example:
+ * 1. Add route rule:
+ *  [
+ *      'class'      => 'yii\rest\UrlRule',
+*       'controller' => [
+*           'api' => 'module/api',
+*            ...
+*       ],
+*       'pluralize' => false,
+*       ['prefix'     => 'angular/rest',]
+*       'tokens' => [
+*           '{id}' => '<id:[0-9a-zA-Z_-][0-9a-zA-Z_,-]*>'
+*       ]
+*   ]
+ *
+ * 2. Add this trait to yii\web\Controller
+ *
+ * class ApiController extends Controller {
+ *    use JsonResponseTrait;
+ *    public function actionIndex() { ...
+ *
+ *
+ *
+ */
+
 namespace yii2utils\rest;
 
 
 use Yii;
-use yii\web\Response;
 use yii\filters\auth\CompositeAuth;
-use yii\filters\ContentNegotiator;
 use yii\filters\RateLimiter;
 use yii\filters\VerbFilter;
 use yii2utils\web\JsonResponseTrait as WebJsonResponse;
@@ -20,13 +44,6 @@ trait JsonResponseTrait
     public function behaviors()
     {
         return [
-            'contentNegotiator' => [
-                'class'   => ContentNegotiator::className(),
-                'formats' => [
-                    'application/json' => Response::FORMAT_JSON,
-                    'application/xml'  => Response::FORMAT_XML,
-                ],
-            ],
             'verbFilter'        => [
                 'class'   => VerbFilter::className(),
                 'actions' => $this->verbs(),
