@@ -61,11 +61,18 @@ trait JsonResponseTrait
 
     protected function verbs()
     {
-        return [
+        /*return [
             'index'  => ['GET', 'HEAD'],
             'view'   => ['GET', 'HEAD'],
             'create' => ['POST'],
             'update' => ['PUT', 'PATCH'],
+            'delete' => ['DELETE'],
+        ];*/
+
+        return [
+            'index'  => ['GET', 'HEAD'],
+            'view'   => ['GET', 'HEAD'],
+            'save' => ['POST', 'PUT', 'PATCH'],
             'delete' => ['DELETE'],
         ];
     }
