@@ -19,7 +19,8 @@ class Application extends WebApplication {
             list ($route, $params) = $request->resolve();
         } else {
             $route = $this->catchAll[0];
-            $params = array_splice($this->catchAll, 1);
+            $params = $this->catchAll;
+            unset($params[0]);
         }
 
         try {
