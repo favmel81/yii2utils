@@ -20,7 +20,8 @@ class FormRender
         'textarea' => 'yii2utils\helpers\form\TextArea',
         'password' => 'yii2utils\helpers\form\Password',
         'captcha' => 'yii2utils\helpers\form\Captcha',
-        'radio' => 'yii2utils\helpers\form\Radio'
+        'radio' => 'yii2utils\helpers\form\Radio',
+        'select' => 'yii2utils\helpers\form\Select'
     ];
 
 
