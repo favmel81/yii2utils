@@ -21,6 +21,7 @@ class FormRender
         'password' => 'yii2utils\helpers\form\Password',
         'captcha' => 'yii2utils\helpers\form\Captcha',
         'radio' => 'yii2utils\helpers\form\Radio',
+        'checkbox' => 'yii2utils\helpers\form\Checkbox',
         'select' => 'yii2utils\helpers\form\Select'
     ];
 
@@ -58,12 +59,13 @@ class FormRender
                 }
             }
             if ($_errors) {
-                if (is_array($class) && sizeof($class)) {
-                    $class = implode(' ' . $class);
+                $class = '';
+                if ($classes_) {
+                    $class = 'class="' . implode(' ', $classes_) .'"';
                 }
 
                 return
-                    '<' . $element . ' class="' . implode(' ', $classes_) . '">' . implode(
+                    '<' . $element . ' ' . $class . ' >' . implode(
                         $separator, $_errors
                     ) . '</'
                     . $element . '>';

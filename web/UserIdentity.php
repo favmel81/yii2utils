@@ -13,6 +13,7 @@ abstract class UserIdentity extends ActiveRecord implements IdentityInterface
 
     const PASSWORD_MIN_LENGTH = 10;
     const EVENT_BEFORE_CHANGE_PASSWORD = 'beforeChangePassword';
+    const EVENT_AFTER_AUTH_MATCH_USER= 'afterAuthMatchUser';
 
     public function beforeSave($insert)
     {
@@ -33,7 +34,7 @@ abstract class UserIdentity extends ActiveRecord implements IdentityInterface
         if ($password == null) {
             $length = (int)$length;
             if ($length < self::PASSWORD_MIN_LENGTH) {
-                $length = 10;
+                $length = self::PASSWORD_MIN_LENGTH;
             }
             $password = Yii::$app->security->generateRandomString($length);
         }

@@ -7,11 +7,12 @@ namespace yii2utils\services;
 use Yii;
 use yii\web\IdentityInterface;
 use yii\base\Object;
+use yii2utils\web\UserIdentity;
+use yii2utils\events\AfterUserMatchEvent;
 
 
 class UserManager extends Object
 {
-    const REMEMBER_PERIOD_DAYS = 30;
     const MESSAGE_USER_BLOCKED = 'user blocked';
     const MESSAGE_INVALID_PASSWORD = 'invalid password';
     const MESSAGE_USER_IS_NOT_FOUND = 'user is not found';
@@ -22,6 +23,7 @@ class UserManager extends Object
 
     public function authByLoginPassword($login, $password, $remember = false)
     {
+        $errors = [];
         $identityClass = $this->getIdentityClass();
         $user = $identityClass::findByLogin($login);
 
@@ -29,10 +31,18 @@ class UserManager extends Object
             $passwordError = false;
             try {
                 if(Yii::$app->security->validatePassword($password, $user->password)) {
-                    if ($user->blocked == 0) {
+                    $event = new AfterUserMatchEvent();
+
+                    $user->trigger(
+                        UserIdentity::EVENT_AFTER_AUTH_MATCH_USER,
+                        $event
+                    );
+
+                    if($event->isSuccess()) {
                         return self::auth($user, $remember);
                     }
-                    $errors['login'] = self::MESSAGE_USER_BLOCKED;
+
+                    $errors = $event->errors;
                 } else {
                     $passwordError = true;
                 }
@@ -61,10 +71,21 @@ class UserManager extends Object
     }
 
 
+    /**
+     * @param IdentityInterface $identity
+     * @param bool|int|false $remember
+     * @return bool
+     */
     protected static function auth(IdentityInterface $identity, $remember = false)
     {
+        if($remember > 0) {
+            $remember = 3600 * 24 * (int)$remember;
+        } else {
+            $remember = 0;
+        }
+
         return Yii::$app->user->login(
-            $identity, $remember ? 3600 * 24 * self::REMEMBER_PERIOD_DAYS : 0
+            $identity, $remember
         );
     }
 
