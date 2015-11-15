@@ -80,10 +80,10 @@ abstract class FieldAbstract extends Object
                 continue;
             }
 
-            if($name != 'class') {
-                $attr[] = $name.'="'.htmlspecialchars($value).'"';
-            } else {
-                $attr[] = 'class="'.implode(' ', $value).'"';
+            if ($name != 'class') {
+                $attr[] = $name . '="' . htmlspecialchars($value) . '"';
+            } elseif ($value) {
+                $attr[] = 'class="' . implode(' ', $value) . '"';
             }
         }
         return implode(' ', $attr);
