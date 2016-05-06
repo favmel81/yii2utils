@@ -25,7 +25,7 @@ class Application extends WebApplication {
 
         try {
             Yii::trace("Route requested: '$route'", __METHOD__);
-            $this->requestedRoute = $route;
+            $this->requestedRoute = &$route;
             $this->trigger(self::EVENT_RESOLVE_ROUTE);
             $result = $this->runAction($route, $params);
             if ($result instanceof Response) {
