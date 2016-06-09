@@ -7,18 +7,19 @@ use yii\base\Event;
 class AfterUserMatchEvent extends Event
 {
 
-    public $errors = [];
+    protected $errors = [];
     protected $resultSuccess = true;
 
     public function setErrors($errors) {
         if(is_array($errors)) {
             $this->errors = $errors;
         }
+        $this->success(false);
     }
 
     public function addError($name, $error) {
         $this->errors[$name] = $error;
-        $this->resultSuccess = false;
+        $this->success(false);
         return $this;
     }
 
@@ -30,6 +31,10 @@ class AfterUserMatchEvent extends Event
 
     public function isSuccess() {
         return $this->resultSuccess;
+    }
+
+    public function getErrors() {
+        return $this->errors;
     }
 
 } 
